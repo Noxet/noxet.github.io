@@ -1,4 +1,4 @@
-baseurl = "https://noxet.se/"
+baseurl = "https://noxet.github.io"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
