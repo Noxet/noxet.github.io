@@ -1,0 +1,163 @@
+<!doctype html><html lang=en>
+<head>
+<title>Infinity Disco Lights :: noxet</title><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="This is the &amp;ldquo;Infinity Disco Lights&amp;rdquo;, or &amp;ldquo;how to abuse a digital counter&amp;rdquo;.
+Who doesn&amp;rsquo;t like circuits with LEDs, especially if they flash in a cool, let&amp;rsquo;s say infinity, pattern? Well, I do.
+Since music is one of my passions, I wanted to build something that connects the two. Enters the disco light. This neat circuit listens to music via an electret microphone, and flashes the LEDs in an infinity pattern following the rhythm.">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=https://noxet.github.io/projects/infinity-disco-lights/>
+<link rel=stylesheet href=https://noxet.github.io/assets/style.css>
+<link rel=apple-touch-icon href=https://noxet.github.io/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://noxet.github.io/img/favicon/orange.png>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content>
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Infinity Disco Lights">
+<meta property="og:description" content="This is the &amp;ldquo;Infinity Disco Lights&amp;rdquo;, or &amp;ldquo;how to abuse a digital counter&amp;rdquo;.
+Who doesn&amp;rsquo;t like circuits with LEDs, especially if they flash in a cool, let&amp;rsquo;s say infinity, pattern? Well, I do.
+Since music is one of my passions, I wanted to build something that connects the two. Enters the disco light. This neat circuit listens to music via an electret microphone, and flashes the LEDs in an infinity pattern following the rhythm.">
+<meta property="og:url" content="https://noxet.github.io/projects/infinity-disco-lights/">
+<meta property="og:site_name" content="noxet">
+<meta property="og:image" content="https://noxet.github.io/projects/img/idl.jpg">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2022-03-07 00:31:56 +0100 +0100">
+</head><body class=orange>
+<div class="container center headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+noxet
+</div></a>
+</div><div class=menu-trigger>menu</div></div><nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/about>About</a></li><li><a href=/music>Music</a></li><li><a href=/projects>Projects</a></li></ul><ul class="menu__inner menu__inner--mobile">
+<li><a href=/about>About</a></li><li><a href=/music>Music</a></li><li><a href=/projects>Projects</a></li></ul></nav></header><div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://noxet.github.io/projects/infinity-disco-lights/>Infinity Disco Lights</a></h1><div class=post-meta>
+<span class=post-date>
+2022-03-07
+</span>
+</div><img src=https://noxet.github.io/projects/img/idl.jpg class=post-cover alt="Infinity Disco Lights" title="Cover Image">
+<div class=post-content><div>
+<p>This is the &ldquo;Infinity Disco Lights&rdquo;, or &ldquo;how to abuse a digital counter&rdquo;.</p><p>Who doesn&rsquo;t like circuits with LEDs, especially if they flash in a cool, let&rsquo;s say infinity, pattern?
+Well, I do.</p><p>Since music is one of my passions, I wanted to build something that connects the two. Enters the disco light.
+This neat circuit listens to music via an electret microphone, and flashes the LEDs in an infinity pattern following the rhythm.</p><h1 id=the-counter>The counter<a href=#the-counter class=hanchor arialabel=Anchor>&#8983;</a> </h1><p>The circuit is built around a digital decade counter, namely the <a href=https://www.ti.com/lit/ds/symlink/cd4017b.pdf>CD4017B</a> IC.
+This counter is commonly used in applications to perform frequency division, divide-by-N counter, decimal decode displays and so on.
+The IC has the following inputs:</p><ul>
+<li>Clock: This is the clock input where each rising edge advances the counter by one.</li><li>Clock inhibit: This input controls whether to advance the counter or to freeze it.</li><li>Reset: Resets the chip to the starting state where pin 0 is high.</li></ul><p>A simple diagram showing the counter in action, assuming reset and clock inhibit are low:</p><pre tabindex=0><code>          ___     ___     ___     ___     ___     ___ 
+Clock ___|   |___|   |___|   |___|   |___|   |___|   |___
+          _______
+&#34;0&#34;   ___|       |_______________________________________
+                  _______ 
+&#34;1&#34;   ___________|       |_______________________________
+                          _______ 
+&#34;2&#34;   ___________________|       |_______________________
+                                  _______ 
+&#34;3&#34;   ___________________________|       |_______________
+...
+</code></pre><p>The maximum input clock frequency, running at 10V, is 5MHz. This is well above the required 20kHz that we are dealing with.</p><h1 id=using-music-as-a-clock-signal>Using music as a clock signal<a href=#using-music-as-a-clock-signal class=hanchor arialabel=Anchor>&#8983;</a> </h1><p>Now, the counter expects a clear square wave input at the clock. Unless you listen to some heavily synthesized music, this is not what we have.
+Instead, we have sine waves, at frequencies spanning from 20Hz to 20kHz, not really an ideal clock signal.</p><p>However, just because a circuit expects a signal to look and behave in a certain way, doesn&rsquo;t mean that we need to conform to it to get it to work,
+even though the result may be less than ideal.
+Instead of a clean square wave, let&rsquo;s just use the music&rsquo;s sine waves to trigger the counter. This presents two problems:</p><ul>
+<li>The input needs to have an amplitude large enough to trigger the counter into counting.</li><li>The input signal needs to be in the range -0.5V to V<sub>DD</sub> + 0.5V, according to the documentation.</li></ul><p>The first problem is solved by amplifying the signal from the microphone.
+The electret microphone is a condenser mic with a <a href=https://en.wikipedia.org/wiki/Field-effect_transistor>FET</a> output buffer.
+This means that we need a pull-up resistor to bias the transistor, as shown below. There is also a capacitor in series with the output,
+to only get the AC signal, since we do not want to amplify the DC bias in the next stage.</p><pre tabindex=0><code> V_DD
+  |
+  _
+ | | 10k
+ |_|       100n
+  |-------- || ---- Out
+  |
+ ,-,  |
+(MIC) |
+ &#39;-&#39;  |
+  |
+  |
+ GND
+</code></pre><p>The output from the mic goes in to a two-stage amplifier, since only a single stage was not enough to bring the signal up to a decent level.
+The first stage amplifier is a common emitter (CE) amp. The bias is a simple resistor divider, setting the base bias to 0.82V.
+The emitter resistor R<sub>E</sub> is 1k, setting the transistor quiescent current (I<sub>Q</sub>) to (0.82 - 0.6) / 1k = 0.22mA. With a collector resistor, R<sub>C</sub>, of
+33k, the quiescent voltage (V<sub>Q</sub>) is 1.7V. The first stage including bias is shown below.</p><pre tabindex=0><code> +9V       +9V
+  |         |
+  _         _
+ | | 100k  | | 33k
+ |_|       |_| 
+  |         |C
+  |      B|/
+  |-------|   BC547 NPN
+  |       |\
+  |         |E
+  _         _
+ | | 10k   | | 1k
+ |_|       |_|
+  |         |
+  |         |
+  |         |
+ GND       GND
+</code></pre><p>The second stage does not need to have its own bias network. Instead, we can use the DC voltage at the Q-point in stage one to bias the second amplifier.
+Similar to stage one, we use a CE amp and set the Q-points to a reasonable value. As said before, amplification solves our first problem that the signal needs to have
+a large enough amplitude to trigger the counter.</p><p>To combat the second problem, that the input can not be negative, we need to set the output from our amplifier roughly
+in the middle of the voltage swing. According to the documentation, there is a schmitt trigger at the clock input, allowing for fast rise and fall times, as well as some buffer
+to keep the circuit stable. Powering the circuit with 10V sets the lower limit to 3V. This is the maximum voltage at which the circuit interprets the input as a zero (low).
+The upper limit is 7V, where the circuit interprets the input as a one (high). Since a fully charged 9V battery reads at around 9.5V, it seems resonable to set the output
+DC voltage between 4.5V - 5V. Now, as long as the amplitude goes beyond 3 and 7V, we are in the clear. Note that clean amplification is not needed here, we might as well overdo the amplification to make sure we hit well below 3V and well above 7V.</p><p>The amplification of a CE amp is determined by the collector and emitter resistors, Gain = R<sub>C</sub> / R<sub>E</sub>. This means that the amplification of our
+circuit is fixed. This is not optimal, since the input signal from the mic is based on the volume of the music as well as the distance to the speaker.
+It would be nice to let the user set the amplification based on the environment. Would a simple potentiometer do? Sadly no. Changing for example R<sub>E</sub> in
+any stage would also change the Q-points (this is also true for R<sub>C</sub>).</p><p>What to do then? Remember that we are only interested in amplifying AC signals, and not DC.
+A capacitor is seen as infinite impedance to a DC signal, but a &ldquo;normal&rdquo; impedance for AC (although frequency dependent).
+We can connect a capacitor in parallel to R<sub>E</sub> by replacing R<sub>E</sub> with a potentiometer, shown below.</p><pre tabindex=0><code>  |
+  |
+  _
+ | |_____
+ |_|     |  
+  |      |
+  |     ---
+  |     ---
+  |      |
+  |      |
+ GND    GND
+</code></pre><p>Notice here, that we do not change the resistance of R<sub>E</sub>, only how much we let AC signal bypass R<sub>E</sub>.
+If the capacitor is all the way &ldquo;down&rdquo; to GND, it does not conduct, since we have the same voltage potential on both sides, so signals
+has to flow through R<sub>E</sub>, and the gain is, as before, R<sub>C</sub> / R<sub>E</sub>.
+If the capacitor is all the way &ldquo;up&rdquo;, then AC signals bypass R<sub>E</sub> completely (a capacitor is basically a short circuit for AC).
+This means that the AC gain is R<sub>C</sub> / R<sub>E</sub> = R<sub>C</sub> / 0 = infinity! Of course, in practice, the gain is far from infinity,
+but let&rsquo;s save those details for another post.</p><p>All in all, we now have a way of controlling the gain, thus the sensitivity of the circuit, neat!
+The complete amplifier circuit is shown below.</p><pre tabindex=0><code> +9V       +9V                       +9V
+  |         |                         |                         
+  |         |                         |                         
+  _         _                         _                 CD4017B        
+ | | 100k  | | 33k                   | | 22k         ____________           
+ |_|       |_|                       |_|            |            |
+  |         |---------------|         |-------------| Clock      |
+  |         |C              |         |C            |____________|           
+  |      B|/                |      B|/                          
+  |-------|   BC547 NPN     |-------|   BC547 NPN               
+  |       |\                        |\                          
+  |         |E                        |E
+  |         |                         |                        
+  _         _ 1k                      _                         
+ | | 10k   | |____                   | | 5.6k                     
+ |_|       |_|    |                  |_|                        
+  |         |    --- 10u              |                         
+  |         |    ---                  |                         
+  |         |     |                   |                         
+ GND       GND   GND                 GND 
+</code></pre><p>The output from the amp goes directly in to the clock of the counter.
+The outputs from the counter is connected to 10mm super bright LEDs.</p><p>That&rsquo;s it!
+The schematic and layout was done in Altium and can be found on my <a href=https://github.com/Noxet/infinity-disco-lights>GitHub</a>.</p></div></div></div></div><footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div></div></footer><script src=https://noxet.github.io/assets/main.js></script>
+<script src=https://noxet.github.io/assets/prism.js></script>
+</div></body></html>
