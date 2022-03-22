@@ -30,7 +30,36 @@
         {{ end }}
 
         {{ partial "mcover.html" . }}
-        <i class="fa-brands fa-spotify"></i>
+
+        <ul>
+        {{ if .Params.spotify }}
+          <li>
+            <i class="fa-brands fa-spotify fa-2xl"></i>
+            <a href="{{ .Params.spotify }}">Spotify</a>
+          </li>
+        {{ end }}
+
+        {{ if .Params.applemusic }}
+          <li>
+            <i class="fa-brands fa-itunes-note fa-2xl"></i>
+            <a href="{{ .Params.applemusic }}">Apple Music</a>
+          </li>
+        {{ end }}
+
+        {{ if .Params.itunes }}
+          <li>
+            <i class="fa-brands fa-itunes fa-2xl"></i>
+            <a href="{{ .Params.itunes }}">iTunes</a>
+          </li>
+        {{ end }}
+
+        {{ if .Params.deezer }}
+          <li>
+            <i class="fa-brands fa-deezer fa-2xl"></i>
+            <a href="{{ .Params.deezer }}">Deezer</a>
+          </li>
+        {{ end }}
+        </ul>
 
       
         <div class="post-content">
