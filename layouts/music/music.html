@@ -39,6 +39,13 @@
           </li>
         {{ end }}
 
+        {{ if .Params.soundcloud }}
+          <li>
+            <i class="fa-brands fa-soundcloud fa-2xl"></i>
+            <a href="{{ .Params.soundcloud }}">Soundcloud</a>
+          </li>
+        {{ end }}
+
         {{ if .Params.applemusic }}
           <li>
             <i class="fa-brands fa-itunes-note fa-2xl"></i>
