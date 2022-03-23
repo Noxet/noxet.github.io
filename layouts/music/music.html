@@ -29,8 +29,13 @@
           </span>
         {{ end }}
 
+        <div class="musicpost">
+        
+        <div class="musiccover">
         {{ partial "mcover.html" . }}
+        </div>
 
+        <div class="musiclinks">
         <ul>
         {{ if .Params.spotify }}
           <li>
@@ -67,6 +72,8 @@
           </li>
         {{ end }}
         </ul>
+      </div>
+      </div>
 
       
         <div class="post-content">
