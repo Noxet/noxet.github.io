@@ -1,0 +1,17 @@
+.musicpost {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.some-links {
+    display: flex;
+    margin-top: 100px;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.some-links a {
+    text-decoration: none;
+}

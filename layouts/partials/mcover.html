@@ -1,0 +1,24 @@
+{{- $mcover := false -}}
+{{- $autoCover := default $.Site.Params.autoCover false }}
+
+{{- if index .Params "mcover" -}}
+  {{- if .Resources.GetMatch .Params.MCover }}
+    {{- $mcover = (.Resources.GetMatch .Params.MCover).RelPermalink -}}
+  {{- else -}}
+    {{- $mcover = absURL .Params.MCover -}}
+  {{- end -}}
+{{- else if $.Site.Params.AutoCover -}}
+  {{- if (not .Params.MCover) -}}
+    {{- if .Resources.GetMatch "mcover.*" -}}
+      {{- $mcover = (.Resources.GetMatch "mcover.*").RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{if $mcover -}}
+  <!-- Cover image found -->
+  <img src="{{ $mcover }}"
+    alt="{{ .Title | plainify | default " " }}"
+    title="{{ .Params.CoverCredit |plainify|default "Cover Image" }}" 
+    width="50%" />
+{{- end }}

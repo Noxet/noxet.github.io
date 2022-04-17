@@ -1,4 +1,4 @@
-baseurl = "https://noxet.github.io"
+baseurl = "https://noxet.se"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
@@ -11,7 +11,7 @@ paginate = 5
 [params]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
-  contentTypeName = "main"
+  contentTypeName = ""
 
   # ["orange", "blue", "red", "green", "pink"]
   themeColor = "orange"
@@ -71,8 +71,8 @@ paginate = 5
     title = "noxet"
     subtitle = ""
     owner = ""
-    keywords = ""
-    copyright = ""
+    keywords = "embedded,programming,c,c++,analog electronics,music,lofi"
+    copyright = "Jonathan Sönnerup"
     menuMore = "Show more"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
@@ -82,7 +82,7 @@ paginate = 5
     missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
-      logoText = "noxet"
+      logoText = "Jonathan Sönnerup"
       logoHomeLink = "/"
 
     [languages.en.menu]

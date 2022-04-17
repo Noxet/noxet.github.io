@@ -1,0 +1,93 @@
+{{ define "main" }}
+  {{ with .Content }}
+    <div class="index-content">
+      {{ . }}
+    </div>
+  {{ end }}
+  <div class="posts">
+    {{ range .Paginator.Pages }}
+      <div class="post on-list">
+        <h1 class="post-title">
+          {{ .Title | markdownify }}
+        </h1>
+        <div class="post-meta">
+          <span class="post-date">
+            {{ if not .Params.hidedate}} {{ .Date.Format "2006" }} {{ end }}
+          </span>
+          {{ with .Params.Author }}
+            <span class="post-author">:: {{ . }}</span>
+          {{ end }}
+        </div>
+
+        {{ if .Params.tags }}
+          <span class="post-tags">
+            {{ range .Params.tags }}
+            #<a href="{{ (urlize (printf "tags/%s/" . )) | absLangURL }}">
+              {{- . -}}
+            </a>&nbsp;
+            {{ end }}
+          </span>
+        {{ end }}
+
+        <div class="musicpost">
+        
+        <div class="musiccover">
+        {{ partial "mcover.html" . }}
+        </div>
+
+        <div class="musiclinks">
+        <ul>
+        {{ if .Params.spotify }}
+          <li>
+            <i class="fa-brands fa-spotify fa-2xl"></i>
+            <a href="{{ .Params.spotify }}">Spotify</a>
+          </li>
+        {{ end }}
+
+        {{ if .Params.soundcloud }}
+          <li>
+            <i class="fa-brands fa-soundcloud fa-2xl"></i>
+            <a href="{{ .Params.soundcloud }}">Soundcloud</a>
+          </li>
+        {{ end }}
+
+        {{ if .Params.applemusic }}
+          <li>
+            <i class="fa-brands fa-itunes-note fa-2xl"></i>
+            <a href="{{ .Params.applemusic }}">Apple Music</a>
+          </li>
+        {{ end }}
+
+        {{ if .Params.itunes }}
+          <li>
+            <i class="fa-brands fa-itunes fa-2xl"></i>
+            <a href="{{ .Params.itunes }}">iTunes</a>
+          </li>
+        {{ end }}
+
+        {{ if .Params.deezer }}
+          <li>
+            <i class="fa-brands fa-deezer fa-2xl"></i>
+            <a href="{{ .Params.deezer }}">Deezer</a>
+          </li>
+        {{ end }}
+        </ul>
+      </div>
+      </div>
+
+      
+        <div class="post-content">
+          {{ if .Params.showFullContent }}
+            {{ .Content }}
+          {{ else if .Description }}
+            {{ .Description | markdownify }}
+          {{ else }}
+            {{ .Summary | markdownify }}
+          {{ end }}
+        </div>
+
+      </div>
+    {{ end }}
+    {{ partial "pagination.html" . }}
+  </div>
+{{ end }}
