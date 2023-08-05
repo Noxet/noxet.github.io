@@ -27,17 +27,91 @@ to compile a simple &amp;ldquo;hello world&amp;rdquo; program:&lt;/p>
 &lt;p>To resolve this issue, we can download the &lt;a href="https://packs.download.microchip.com/">device support pack&lt;/a> from Microchip.
 In this case, I downloaded the support pack for the ATtiny series.
 Even though the file extension is &lt;code>.atpack&lt;/code> it is actually a zip file, so go ahead and extract it.&lt;/p>
-&lt;p>Now we can copy the missing files to the installation folder of &lt;code>avr-gcc&lt;/code>:&lt;/p>
+&lt;p>Now we can copy the missing files to the installation folder of &lt;code>avr-gcc&lt;/code>.&lt;/p>
 &lt;ul>
-&lt;li>&lt;code>cp include/avr/iotn* &amp;lt;install folder&amp;gt;/avr/include/avr/&lt;/code> - The device-specific header files included by &lt;code>avr/io.h&lt;/code>&lt;/li>
-&lt;li>&lt;code>cp gcc/dev/attiny*/avrxmega3/*.{a,o} &amp;lt;install folder&amp;gt;/avr/lib/avrxmega3/&lt;/code> - The C-runtime library&lt;/li>
-&lt;li>&lt;code>cp gcc/dev/attiny*/avrxmega3/short-calls/*.{a,o} &amp;lt;install folder&amp;gt;/avr/lib/avrxmega3/short-calls&lt;/code> - The C-runtime library for MCUs with under 8k memory (using short-call instructions)&lt;/li>
-&lt;li>&lt;code>cp attiny*/device-specs/* &amp;lt;install folder&amp;gt;/lib/gcc/avr/7.3.0/device-specs&lt;/code> - The device specifications used by the compiler&lt;/li>
+&lt;li>The device-specific header files included by &lt;code>avr/io.h&lt;/code>:&lt;/li>
 &lt;/ul>
-&lt;p>&lt;em>Note&lt;/em> that I ran this commands in &lt;code>zsh&lt;/code>, so the wildcards might not work for you. Worst case, you have to copy them
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp include/avr/iotn* &amp;lt;install folder&amp;gt;/avr/include/avr/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>The C-runtime library:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp gcc/dev/attiny*/avrxmega3/*.&lt;span style="color:#f92672">{&lt;/span>a,o&lt;span style="color:#f92672">}&lt;/span> &amp;lt;install folder&amp;gt;/avr/lib/avrxmega3/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>The C-runtime library for MCUs with under 8k memory (using short-call instructions):&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp gcc/dev/attiny*/avrxmega3/short-calls/*.&lt;span style="color:#f92672">{&lt;/span>a,o&lt;span style="color:#f92672">}&lt;/span> &amp;lt;install folder&amp;gt;/avr/lib/avrxmega3/short-calls
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>The device specifications used by the compiler:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp attiny*/device-specs/* &amp;lt;install folder&amp;gt;/lib/gcc/avr/7.3.0/device-specs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>Note&lt;/em> that I ran this commands in &lt;code>zsh&lt;/code>, so the wildcards might not work for you. Worst case, you have to copy them
 manually, either all or just the ones you need.&lt;/p>
-&lt;p>Then, we need to update &lt;code>avr/io.h&lt;/code> to include the correct headers:&lt;/p>
+&lt;p>Finally, we need to update &lt;code>avr/io.h&lt;/code> to include the correct headers, by adding defines and includes for out target
+MCUs:&lt;/p>
 &lt;ul>
 &lt;li>Either do it manually, following the structure of the header file, adding the new MCUs you want&lt;/li>
 &lt;li>or, download my &lt;a href="https://noxet.se/io.h">header file&lt;/a> and replace the current one (&lt;code>&amp;lt;install folder&amp;gt;/avr/include/avr/io.h&lt;/code>)&lt;/li>
-&lt;/ul></content></item></channel></rss>
+&lt;/ul>
+&lt;h1 id="building-hello-world">Building hello world&lt;/h1>
+&lt;p>To verify that our setup actually works, let&amp;rsquo;s create a simple hello world program and compile it.&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define F_CPU 20000000ULL
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;avr/io.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;util/delay.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// configure clock, and disable prescaler
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> CCP &lt;span style="color:#f92672">=&lt;/span> CCP_IOREG_gc;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CLKCTRL.MCLKCTRLB &lt;span style="color:#f92672">&amp;amp;=&lt;/span> &lt;span style="color:#f92672">~&lt;/span>(&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// setup LED pin
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PORTA.DIRSET &lt;span style="color:#f92672">=&lt;/span> PIN2_bm;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PORTA.OUTSET &lt;span style="color:#f92672">=&lt;/span> PIN2_bm;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_delay_ms&lt;/span>(&lt;span style="color:#ae81ff">500&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PORTA.OUTCLR &lt;span style="color:#f92672">=&lt;/span> PIN2_bm;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_delay_ms&lt;/span>(&lt;span style="color:#ae81ff">500&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Compile with&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>avr-gcc --mmcu&lt;span style="color:#f92672">=&lt;/span>attiny402 -O2 main.c -o main.elf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can check the section sizes:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&amp;gt; avr-size main.elf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> text data bss dec hex filename
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 140 0 0 140 8c main.elf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can also generate then hex file used for flashing:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&amp;gt; avr-objcopy -j .data -j .text -O ihex main.elf main.hex
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>That&amp;rsquo;s it!
+You should now have a fully working toolchain for the latest MCUs.&lt;/p>
+&lt;p>Check out the coming posts about setting up avrdude, and how to build your own UPDI programmer.&lt;/p></content></item></channel></rss>
