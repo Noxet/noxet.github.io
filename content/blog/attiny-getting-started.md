@@ -9,6 +9,7 @@ keywords = ["attiny", "microchip", "avr", "c", "c++", "embedded", "mcu", "microc
 description = "A tutorial to get started with development on the new ATtiny series of microcontrollers"
 showFullContent = false
 readingTime = false
+draft = true
 +++
 
 #Intro
