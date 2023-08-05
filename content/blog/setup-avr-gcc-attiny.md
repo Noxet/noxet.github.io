@@ -42,15 +42,79 @@ To resolve this issue, we can download the [device support pack](https://packs.d
 In this case, I downloaded the support pack for the ATtiny series.
 Even though the file extension is `.atpack` it is actually a zip file, so go ahead and extract it.
 
-Now we can copy the missing files to the installation folder of `avr-gcc`:
-- `cp include/avr/iotn* <install folder>/avr/include/avr/` - The device-specific header files included by `avr/io.h`
-- `cp gcc/dev/attiny*/avrxmega3/*.{a,o} <install folder>/avr/lib/avrxmega3/` - The C-runtime library
-- `cp gcc/dev/attiny*/avrxmega3/short-calls/*.{a,o} <install folder>/avr/lib/avrxmega3/short-calls` - The C-runtime library for MCUs with under 8k memory (using short-call instructions)
-- `cp attiny*/device-specs/* <install folder>/lib/gcc/avr/7.3.0/device-specs` - The device specifications used by the compiler
+Now we can copy the missing files to the installation folder of `avr-gcc`.
+
+- The device-specific header files included by `avr/io.h`:
+```sh
+cp include/avr/iotn* <install folder>/avr/include/avr/
+```
+- The C-runtime library:
+```sh
+cp gcc/dev/attiny*/avrxmega3/*.{a,o} <install folder>/avr/lib/avrxmega3/
+```
+- The C-runtime library for MCUs with under 8k memory (using short-call instructions):
+```sh
+cp gcc/dev/attiny*/avrxmega3/short-calls/*.{a,o} <install folder>/avr/lib/avrxmega3/short-calls
+```
+- The device specifications used by the compiler:
+```sh
+cp attiny*/device-specs/* <install folder>/lib/gcc/avr/7.3.0/device-specs
+```
 
 *Note* that I ran this commands in `zsh`, so the wildcards might not work for you. Worst case, you have to copy them
 manually, either all or just the ones you need.
 
-Then, we need to update `avr/io.h` to include the correct headers:
+Finally, we need to update `avr/io.h` to include the correct headers, by adding defines and includes for out target
+MCUs:
 - Either do it manually, following the structure of the header file, adding the new MCUs you want
 - or, download my [header file](/io.h) and replace the current one (`<install folder>/avr/include/avr/io.h`)
+
+# Building hello world
+
+To verify that our setup actually works, let's create a simple hello world program and compile it.
+```c {linenos=table}
+#define F_CPU 20000000ULL
+
+#include <avr/io.h>
+#include <util/delay.h>
+
+int main(void)
+{
+    // configure clock, and disable prescaler
+    CCP = CCP_IOREG_gc;
+    CLKCTRL.MCLKCTRLB &= ~(1 << 0);
+
+    // setup LED pin
+    PORTA.DIRSET = PIN2_bm;
+
+    while (1)
+    {
+        PORTA.OUTSET = PIN2_bm;
+        _delay_ms(500);
+        PORTA.OUTCLR = PIN2_bm;
+        _delay_ms(500);
+    }
+}
+```
+
+Compile with
+```sh
+avr-gcc --mmcu=attiny402 -O2 main.c -o main.elf
+```
+
+We can check the section sizes:
+```sh
+> avr-size main.elf
+   text	   data	    bss	    dec	    hex	filename
+    140	      0	      0	    140	     8c	main.elf
+```
+
+We can also generate then hex file used for flashing:
+```sh
+> avr-objcopy -j .data -j .text -O ihex main.elf main.hex
+```
+
+That's it!
+You should now have a fully working toolchain for the latest MCUs.
+
+Check out the coming posts about setting up avrdude, and how to build your own UPDI programmer.
