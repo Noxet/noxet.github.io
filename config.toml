@@ -16,6 +16,8 @@ paginate = 5
   # ["orange", "blue", "red", "green", "pink"]
   themeColor = "orange"
 
+  oneHeadingSize = false
+
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 4
 
