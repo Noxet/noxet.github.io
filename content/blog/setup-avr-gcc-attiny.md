@@ -58,7 +58,7 @@ cp gcc/dev/attiny*/avrxmega3/short-calls/*.{a,o} <install folder>/avr/lib/avrxme
 ```
 - The device specifications used by the compiler:
 ```sh
-cp attiny*/device-specs/* <install folder>/lib/gcc/avr/7.3.0/device-specs
+cp gcc/dev/attiny*/device-specs/* <install folder>/lib/gcc/avr/7.3.0/device-specs
 ```
 
 *Note* that I ran this commands in `zsh`, so the wildcards might not work for you. Worst case, you have to copy them
