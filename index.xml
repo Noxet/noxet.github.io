@@ -43,7 +43,7 @@ Even though the file extension is &lt;code>.atpack&lt;/code> it is actually a zi
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>The device specifications used by the compiler:&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp attiny*/device-specs/* &amp;lt;install folder&amp;gt;/lib/gcc/avr/7.3.0/device-specs
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp gcc/dev/attiny*/device-specs/* &amp;lt;install folder&amp;gt;/lib/gcc/avr/7.3.0/device-specs
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>Note&lt;/em> that I ran this commands in &lt;code>zsh&lt;/code>, so the wildcards might not work for you. Worst case, you have to copy them
 manually, either all or just the ones you need.&lt;/p>
 &lt;p>Finally, we need to update &lt;code>avr/io.h&lt;/code> to include the correct headers, by adding defines and includes for out target
