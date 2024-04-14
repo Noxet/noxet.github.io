@@ -71,17 +71,20 @@ paginate = 5
   [languages.en]
     languageName = "English"
     title = "noxet"
-    subtitle = ""
-    owner = ""
-    keywords = "embedded,programming,c,c++,analog electronics,music,lofi"
     copyright = "Jonathan Sönnerup"
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    newerPosts = "Newer posts"
-    olderPosts = "Older posts"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
+
+    [languages.en.params]
+      owner = ""
+      menuMore = "Show more"
+      readMore = "Read more"
+      readOtherPosts = "Read other posts"
+      newerPosts = "Newer posts"
+      olderPosts = "Older posts"
+      missingContentMessage = "Page not found..."
+      missingBackButtonLabel = "Back to home page"
+      subtitle = ""
+      keywords = "embedded,programming,c,c++,analog electronics,music,lofi"
+        
 
     [languages.en.params.logo]
       logoText = "Jonathan Sönnerup"
