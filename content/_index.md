@@ -1,13 +1,11 @@
+Noxet Technologies AB
 
-Welcome to my cloud! 
-Kidding.. It's just a computer.
+We offer services in multiple areas for embedded systems, including
+- Hardware design
+- Prototyping
+- Electronics
+- Embedded software
+- Cybersecurity
 
-
-I'm Jonathan, also known as noxet around the interwebs. This website is a collection
-of all the random things I do. Hopefully, you'll find something of interest.
-
-
-<div class="some-links">
-    <a href ="https://www.instagram.com/nooxet/" target="_blank"><i class="fa-brands fa-instagram fa-2xl"></i> Instagram</a>
-    <a href ="https://open.spotify.com/artist/1apfw2E2Y1SsuZM1Z4Jczt" target="_blank"><i class="fa-brands fa-spotify fa-2xl"></i> Spotify</a>
-</div>
+Contact
+Send inquiries to `contact AT noxet.se`

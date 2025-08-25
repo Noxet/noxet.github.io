@@ -1,0 +1,6 @@
+baseURL = 'https://noxet.se'
+languageCode = 'en-us'
+title = 'Noxet Technologies'
+theme = 'terminal'
+
+sectionPagesMenu = 'main'

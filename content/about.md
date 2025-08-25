@@ -1,19 +1,29 @@
----
-title: "about"
-draft: false
-showpagemeta: false
-showcomments: false
-hidedate: true
----
++++
+menus = 'main'
+title = 'About'
++++
 
-I am an Electrical Engineer by training, and a musician by heart.
-I am a former Ph.D. student in Security and Cryptography at Lund University, Sweden.
+Noxet Technologies is a small company with big xxx
 
-I have a passion for learning and creating (un)necessary things, which is why I always have
-one too many projects going on. I love everything related to electronics, from hardcore analog,
-digital, FPGA, ASIC, embedded, to operating systems, network, and of course security.
+# Embedded systems
 
-I am a guitarist turned bassist, and I am now a full-time slapper.
-I have trained martials arts for many years, which helped me slap even harder.
+We have experience with many tehcnologies in embedded systems, working mostly with the following MCUs
+- AVR
+- STM32
+- ESP
+- RISC-V
 
-I love the smell of soldering tin in the morning.
+From bare-metal development to RTOS and Linux, we deliver high-quality code and documentation.
+
+# Electronics and PCB
+
+We provide expertise in electronics and PCB design, from power electronics to high-speed circuits, such as
+FPGAs, DRAM, USB, and Ethernet.
+
+We develop electronic products, both custom-made for businesses, but also home electronic devices.
+
+
+# Cybersecurity
+
+We provide expertise in cybersecurity for embedded systems, to help companies stay up-to-date with
+current technologies, and to be standard-compliant, such as RED and CRA.
