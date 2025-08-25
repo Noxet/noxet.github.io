@@ -1,4 +1,4 @@
-Noxet Technologies is a small company with big xxx
+Noxet Technologies is a small company with big engagement.
 
 # Embedded systems
 
