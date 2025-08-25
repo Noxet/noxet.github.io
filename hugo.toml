@@ -80,10 +80,10 @@ pagination.pagerSize = 5
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Terminal"
+    title = "Noxet Technologies"
 
     [languages.en.params]
-      subtitle = "A simple, retro theme for Hugo"
+      subtitle = "Experts in embedded systems"
       owner = ""
       keywords = ""
       copyright = ""
@@ -98,7 +98,7 @@ pagination.pagerSize = 5
       words = "words"
 
       [languages.en.params.logo]
-        logoText = "Terminal"
+        logoText = "Noxet Technologies"
         logoHomeLink = "/"
 
       [languages.en.menu]
