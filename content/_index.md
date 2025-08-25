@@ -6,6 +6,3 @@ We offer services in multiple areas for embedded systems, including
 - Electronics
 - Embedded software
 - Cybersecurity
-
-Contact
-Send inquiries to `contact AT noxet.se`

@@ -1,8 +1,3 @@
-+++
-menus = 'main'
-title = 'About'
-+++
-
 Noxet Technologies is a small company with big xxx
 
 # Embedded systems
