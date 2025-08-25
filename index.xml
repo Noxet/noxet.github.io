@@ -1,260 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>noxet</title><link>https://noxet.se/</link><description>Recent content on noxet</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Jonathan Sönnerup</copyright><lastBuildDate>Mon, 01 Apr 2024 16:17:30 +0200</lastBuildDate><atom:link href="https://noxet.se/index.xml" rel="self" type="application/rss+xml"/><item><title>Future Ride</title><link>https://noxet.se/music/future-ride/</link><pubDate>Tue, 28 Nov 2023 22:13:41 +0100</pubDate><guid>https://noxet.se/music/future-ride/</guid><description>#Synthwave #Nu Disco #Indie Dance</description><content>&lt;p>#Synthwave #Nu Disco #Indie Dance&lt;/p></content></item><item><title>Setup avr-gcc for the new ATtiny 0/1/2 series</title><link>https://noxet.se/blog/setup-avr-gcc-attiny/</link><pubDate>Sat, 05 Aug 2023 00:32:54 +0200</pubDate><guid>https://noxet.se/blog/setup-avr-gcc-attiny/</guid><description>Background The new ATtiny series is a nice addition to the AVR family. However, it is not as trivial to just run avr-gcc as usual and believe that stuff will just&amp;hellip; work&amp;hellip; that would be all too easy :)
-Here, I describe my own journey trying to get all this stuff working, so that I can use the toolchain and development setup I have always used.
-Set up the toolchain If you are using the latest Microchip (Atmel) Studio or MPLAB, everything should already be set up to work without further adjustments.</description><content>&lt;h1 id="background">Background&lt;/h1>
-&lt;p>The new ATtiny series is a nice addition to the AVR family.
-However, it is not as trivial to just run avr-gcc as usual and believe that stuff
-will just&amp;hellip; work&amp;hellip; that would be all too easy :)&lt;/p>
-&lt;p>Here, I describe my own journey trying to get all this stuff working, so that I can use the toolchain and
-development setup I have always used.&lt;/p>
-&lt;h1 id="set-up-the-toolchain">Set up the toolchain&lt;/h1>
-&lt;p>If you are using the latest Microchip (Atmel) Studio or MPLAB, everything should already be set up to work without further
-adjustments.&lt;/p>
-&lt;p>This post is about how to set up the AVR GCC toolchain along with avrdude.&lt;/p>
-&lt;h2 id="compiler-and-libc">Compiler and libc&lt;/h2>
-&lt;p>Just using avr-gcc (and its avr-libc) proved to be a bit more painful (running on macOS 13.1).
-The avr-gcc from &lt;code>brew&lt;/code> (verion 9.3.0 at the time of writing) does not contain &lt;code>libc.a&lt;/code> and &lt;code>libm.a&lt;/code> which is needed
-by the linker. Therefore as a starting point:&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Noxet Technologies</title><link>https://noxet.se/</link><description>Recent content on Noxet Technologies</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://noxet.se/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://noxet.se/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://noxet.se/about/</guid><description>&lt;p>Noxet Technologies is a small company with big xxx&lt;/p>
+&lt;h1 id="embedded-systems">Embedded systems&lt;/h1>
+&lt;p>We have experience with many tehcnologies in embedded systems, working mostly with the following MCUs&lt;/p>
 &lt;ul>
-&lt;li>Download the &lt;a href="https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers">latest toolchain&lt;/a> from Microchip (avr-gcc 7.3.0)&lt;/li>
-&lt;li>Extract it to a good location&lt;/li>
-&lt;li>Set the PATH variable to point to &amp;lt;install folder&amp;gt;/bin, which contains all tools.&lt;/li>
+&lt;li>AVR&lt;/li>
+&lt;li>STM32&lt;/li>
+&lt;li>ESP&lt;/li>
+&lt;li>RISC-V&lt;/li>
 &lt;/ul>
-&lt;p>The included libc (from Microchip) did not contain information about the new series of ATtinys except for the 1-series. This is confirmed when trying
-to compile a simple &amp;ldquo;hello world&amp;rdquo; program:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&amp;gt; avr-gcc -mmcu&lt;span style="color:#f92672">=&lt;/span>attiny402 main.c
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>avr/io.h:581:6: warning: &lt;span style="color:#75715e">#warning &amp;#34;device type not defined&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>What this means is that the included &lt;code>io.h&lt;/code> file does not have a definition for the MCU, attiny402 in this case.&lt;/p>
-&lt;p>To resolve this issue, we can download the &lt;a href="https://packs.download.microchip.com/">device support pack&lt;/a> from Microchip.
-In this case, I downloaded the support pack for the ATtiny series.
-Even though the file extension is &lt;code>.atpack&lt;/code> it is actually a zip file, so go ahead and extract it.&lt;/p>
-&lt;p>Now we can copy the missing files to the installation folder of &lt;code>avr-gcc&lt;/code>.&lt;/p>
+&lt;p>From bare-metal development to RTOS and Linux, we deliver high-quality code and documentation.&lt;/p>
+&lt;h1 id="electronics-and-pcb">Electronics and PCB&lt;/h1>
+&lt;p>We provide expertise in electronics and PCB design, from power electronics to high-speed circuits, such as
+FPGAs, DRAM, USB, and Ethernet.&lt;/p>
+&lt;p>We develop electronic products, both custom-made for businesses, but also home electronic devices.&lt;/p></description><content>&lt;p>Noxet Technologies is a small company with big xxx&lt;/p>
+&lt;h1 id="embedded-systems">Embedded systems&lt;/h1>
+&lt;p>We have experience with many tehcnologies in embedded systems, working mostly with the following MCUs&lt;/p>
 &lt;ul>
-&lt;li>The device-specific header files included by &lt;code>avr/io.h&lt;/code>:&lt;/li>
+&lt;li>AVR&lt;/li>
+&lt;li>STM32&lt;/li>
+&lt;li>ESP&lt;/li>
+&lt;li>RISC-V&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp include/avr/iotn* &amp;lt;install folder&amp;gt;/avr/include/avr/
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>The C-runtime library:&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp gcc/dev/attiny*/avrxmega3/*.&lt;span style="color:#f92672">{&lt;/span>a,o&lt;span style="color:#f92672">}&lt;/span> &amp;lt;install folder&amp;gt;/avr/lib/avrxmega3/
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>The C-runtime library for MCUs with under 8k memory (using short-call instructions):&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp gcc/dev/attiny*/avrxmega3/short-calls/*.&lt;span style="color:#f92672">{&lt;/span>a,o&lt;span style="color:#f92672">}&lt;/span> &amp;lt;install folder&amp;gt;/avr/lib/avrxmega3/short-calls
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>The device specifications used by the compiler:&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cp gcc/dev/attiny*/device-specs/* &amp;lt;install folder&amp;gt;/lib/gcc/avr/7.3.0/device-specs
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>Note&lt;/em> that I ran this commands in &lt;code>zsh&lt;/code>, so the wildcards might not work for you. Worst case, you have to copy them
-manually, either all or just the ones you need.&lt;/p>
-&lt;p>Finally, we need to update &lt;code>avr/io.h&lt;/code> to include the correct headers, by adding defines and includes for out target
-MCUs:&lt;/p>
-&lt;ul>
-&lt;li>Either do it manually, following the structure of the header file, adding the new MCUs you want&lt;/li>
-&lt;li>or, download my &lt;a href="https://noxet.se/io.h">header file&lt;/a> and replace the current one (&lt;code>&amp;lt;install folder&amp;gt;/avr/include/avr/io.h&lt;/code>)&lt;/li>
-&lt;/ul>
-&lt;h1 id="building-hello-world">Building hello world&lt;/h1>
-&lt;p>To verify that our setup actually works, let&amp;rsquo;s create a simple hello world program and compile it.&lt;/p>
-&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-&lt;table style="border-spacing:0;padding:0;margin:0;border:0;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
-&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define F_CPU 20000000ULL
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;avr/io.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;util/delay.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// configure clock, and disable prescaler
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> CCP &lt;span style="color:#f92672">=&lt;/span> CCP_IOREG_gc;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CLKCTRL.MCLKCTRLB &lt;span style="color:#f92672">&amp;amp;=&lt;/span> &lt;span style="color:#f92672">~&lt;/span>(&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// setup LED pin
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PORTA.DIRSET &lt;span style="color:#f92672">=&lt;/span> PIN2_bm;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PORTA.OUTSET &lt;span style="color:#f92672">=&lt;/span> PIN2_bm;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_delay_ms&lt;/span>(&lt;span style="color:#ae81ff">500&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PORTA.OUTCLR &lt;span style="color:#f92672">=&lt;/span> PIN2_bm;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_delay_ms&lt;/span>(&lt;span style="color:#ae81ff">500&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>Compile with&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>avr-gcc --mmcu&lt;span style="color:#f92672">=&lt;/span>attiny402 -O2 main.c -o main.elf
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can check the section sizes:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&amp;gt; avr-size main.elf
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> text data bss dec hex filename
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 140 0 0 140 8c main.elf
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can also generate then hex file used for flashing:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&amp;gt; avr-objcopy -j .data -j .text -O ihex main.elf main.hex
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>That&amp;rsquo;s it!
-You should now have a fully working toolchain for the latest MCUs.&lt;/p>
-&lt;p>Check out the coming posts about setting up avrdude, and how to build your own UPDI programmer.&lt;/p></content></item><item><title>Serenity</title><link>https://noxet.se/music/serenity/</link><pubDate>Wed, 23 Mar 2022 21:18:39 +0100</pubDate><guid>https://noxet.se/music/serenity/</guid><description>#Lofi #Chill</description><content>&lt;p>#Lofi #Chill&lt;/p></content></item><item><title>Infinity Disco Lights</title><link>https://noxet.se/projects/infinity-disco-lights/</link><pubDate>Mon, 07 Mar 2022 00:31:56 +0100</pubDate><guid>https://noxet.se/projects/infinity-disco-lights/</guid><description>This is the &amp;ldquo;Infinity Disco Lights&amp;rdquo;, or &amp;ldquo;how to abuse a digital counter&amp;rdquo;.
-Who doesn&amp;rsquo;t like circuits with LEDs, especially if they flash in a cool, let&amp;rsquo;s say infinity, pattern? Well, I do.
-Since music is one of my passions, I wanted to build something that connects the two. Enters the disco light. This neat circuit listens to music via an electret microphone, and flashes the LEDs in an infinity pattern following the rhythm.</description><content>&lt;p>This is the &amp;ldquo;Infinity Disco Lights&amp;rdquo;, or &amp;ldquo;how to abuse a digital counter&amp;rdquo;.&lt;/p>
-&lt;p>Who doesn&amp;rsquo;t like circuits with LEDs, especially if they flash in a cool, let&amp;rsquo;s say infinity, pattern?
-Well, I do.&lt;/p>
-&lt;p>Since music is one of my passions, I wanted to build something that connects the two. Enters the disco light.
-This neat circuit listens to music via an electret microphone, and flashes the LEDs in an infinity pattern following the rhythm.&lt;/p>
-&lt;h1 id="the-counter">The counter&lt;/h1>
-&lt;p>The circuit is built around a digital decade counter, namely the &lt;a href="https://www.ti.com/lit/ds/symlink/cd4017b.pdf">CD4017B&lt;/a> IC.
-This counter is commonly used in applications to perform frequency division, divide-by-N counter, decimal decode displays and so on.
-The IC has the following inputs:&lt;/p>
-&lt;ul>
-&lt;li>Clock: This is the clock input where each rising edge advances the counter by one.&lt;/li>
-&lt;li>Clock inhibit: This input controls whether to advance the counter or to freeze it.&lt;/li>
-&lt;li>Reset: Resets the chip to the starting state where pin 0 is high.&lt;/li>
-&lt;/ul>
-&lt;p>A simple diagram showing the counter in action, assuming reset and clock inhibit are low:&lt;/p>
-&lt;pre tabindex="0">&lt;code> ___ ___ ___ ___ ___ ___
-Clock ___| |___| |___| |___| |___| |___| |___
-_______
-&amp;#34;0&amp;#34; ___| |_______________________________________
-_______
-&amp;#34;1&amp;#34; ___________| |_______________________________
-_______
-&amp;#34;2&amp;#34; ___________________| |_______________________
-_______
-&amp;#34;3&amp;#34; ___________________________| |_______________
-...
-&lt;/code>&lt;/pre>&lt;p>The maximum input clock frequency, running at 10V, is 5MHz. This is well above the required 20kHz that we are dealing with.&lt;/p>
-&lt;h1 id="using-music-as-a-clock-signal">Using music as a clock signal&lt;/h1>
-&lt;p>Now, the counter expects a clear square wave input at the clock. Unless you listen to some heavily synthesized music, this is not what we have.
-Instead, we have sine waves, at frequencies spanning from 20Hz to 20kHz, not really an ideal clock signal.&lt;/p>
-&lt;p>However, just because a circuit expects a signal to look and behave in a certain way, doesn&amp;rsquo;t mean that we need to conform to it to get it to work,
-even though the result may be less than ideal.
-Instead of a clean square wave, let&amp;rsquo;s just use the music&amp;rsquo;s sine waves to trigger the counter. This presents two problems:&lt;/p>
-&lt;ul>
-&lt;li>The input needs to have an amplitude large enough to trigger the counter into counting.&lt;/li>
-&lt;li>The input signal needs to be in the range -0.5V to V&lt;sub>DD&lt;/sub> + 0.5V, according to the documentation.&lt;/li>
-&lt;/ul>
-&lt;p>The first problem is solved by amplifying the signal from the microphone.
-The electret microphone is a condenser mic with a &lt;a href="https://en.wikipedia.org/wiki/Field-effect_transistor">FET&lt;/a> output buffer.
-This means that we need a pull-up resistor to bias the transistor, as shown below. There is also a capacitor in series with the output,
-to only get the AC signal, since we do not want to amplify the DC bias in the next stage.&lt;/p>
-&lt;pre tabindex="0">&lt;code> V_DD
-|
-_
-| | 10k
-|_| 100n
-|-------- || ---- Out
-|
-,-, |
-(MIC) |
-&amp;#39;-&amp;#39; |
-|
-|
-GND
-&lt;/code>&lt;/pre>&lt;p>The output from the mic goes in to a two-stage amplifier, since only a single stage was not enough to bring the signal up to a decent level.
-The first stage amplifier is a common emitter (CE) amp. The bias is a simple resistor divider, setting the base bias to 0.82V.
-The emitter resistor R&lt;sub>E&lt;/sub> is 1k, setting the transistor quiescent current (I&lt;sub>Q&lt;/sub>) to (0.82 - 0.6) / 1k = 0.22mA. With a collector resistor, R&lt;sub>C&lt;/sub>, of
-33k, the quiescent voltage (V&lt;sub>Q&lt;/sub>) is 1.7V. The first stage including bias is shown below.&lt;/p>
-&lt;pre tabindex="0">&lt;code> +9V +9V
-| |
-_ _
-| | 100k | | 33k
-|_| |_|
-| |C
-| B|/
-|-------| BC547 NPN
-| |\
-| |E
-_ _
-| | 10k | | 1k
-|_| |_|
-| |
-| |
-| |
-GND GND
-&lt;/code>&lt;/pre>&lt;p>The second stage does not need to have its own bias network. Instead, we can use the DC voltage at the Q-point in stage one to bias the second amplifier.
-Similar to stage one, we use a CE amp and set the Q-points to a reasonable value. As said before, amplification solves our first problem that the signal needs to have
-a large enough amplitude to trigger the counter.&lt;/p>
-&lt;p>To combat the second problem, that the input can not be negative, we need to set the output from our amplifier roughly
-in the middle of the voltage swing. According to the documentation, there is a schmitt trigger at the clock input, allowing for fast rise and fall times, as well as some buffer
-to keep the circuit stable. Powering the circuit with 10V sets the lower limit to 3V. This is the maximum voltage at which the circuit interprets the input as a zero (low).
-The upper limit is 7V, where the circuit interprets the input as a one (high). Since a fully charged 9V battery reads at around 9.5V, it seems resonable to set the output
-DC voltage between 4.5V - 5V. Now, as long as the amplitude goes beyond 3 and 7V, we are in the clear. Note that clean amplification is not needed here, we might as well overdo the amplification to make sure we hit well below 3V and well above 7V.&lt;/p>
-&lt;p>The amplification of a CE amp is determined by the collector and emitter resistors, Gain = R&lt;sub>C&lt;/sub> / R&lt;sub>E&lt;/sub>. This means that the amplification of our
-circuit is fixed. This is not optimal, since the input signal from the mic is based on the volume of the music as well as the distance to the speaker.
-It would be nice to let the user set the amplification based on the environment. Would a simple potentiometer do? Sadly no. Changing for example R&lt;sub>E&lt;/sub> in
-any stage would also change the Q-points (this is also true for R&lt;sub>C&lt;/sub>).&lt;/p>
-&lt;p>What to do then? Remember that we are only interested in amplifying AC signals, and not DC.
-A capacitor is seen as infinite impedance to a DC signal, but a &amp;ldquo;normal&amp;rdquo; impedance for AC (although frequency dependent).
-We can connect a capacitor in parallel to R&lt;sub>E&lt;/sub> by replacing R&lt;sub>E&lt;/sub> with a potentiometer, shown below.&lt;/p>
-&lt;pre tabindex="0">&lt;code> |
-|
-_
-| |_____
-|_| |
-| |
-| ---
-| ---
-| |
-| |
-GND GND
-&lt;/code>&lt;/pre>&lt;p>Notice here, that we do not change the resistance of R&lt;sub>E&lt;/sub>, only how much we let AC signal bypass R&lt;sub>E&lt;/sub>.
-If the capacitor is all the way &amp;ldquo;down&amp;rdquo; to GND, it does not conduct, since we have the same voltage potential on both sides, so signals
-has to flow through R&lt;sub>E&lt;/sub>, and the gain is, as before, R&lt;sub>C&lt;/sub> / R&lt;sub>E&lt;/sub>.
-If the capacitor is all the way &amp;ldquo;up&amp;rdquo;, then AC signals bypass R&lt;sub>E&lt;/sub> completely (a capacitor is basically a short circuit for AC).
-This means that the AC gain is R&lt;sub>C&lt;/sub> / R&lt;sub>E&lt;/sub> = R&lt;sub>C&lt;/sub> / 0 = infinity! Of course, in practice, the gain is far from infinity,
-but let&amp;rsquo;s save those details for another post.&lt;/p>
-&lt;p>All in all, we now have a way of controlling the gain, thus the sensitivity of the circuit, neat!
-The complete amplifier circuit is shown below.&lt;/p>
-&lt;pre tabindex="0">&lt;code> +9V +9V +9V
-| | |
-| | |
-_ _ _ CD4017B
-| | 100k | | 33k | | 22k ____________
-|_| |_| |_| | |
-| |---------------| |-------------| Clock |
-| |C | |C |____________|
-| B|/ | B|/
-|-------| BC547 NPN |-------| BC547 NPN
-| |\ |\
-| |E |E
-| | |
-_ _ 1k _
-| | 10k | |____ | | 5.6k
-|_| |_| | |_|
-| | --- 10u |
-| | --- |
-| | | |
-GND GND GND GND
-&lt;/code>&lt;/pre>&lt;p>The output from the amp goes directly in to the clock of the counter.
-The outputs from the counter is connected to 10mm super bright LEDs.&lt;/p>
-&lt;p>That&amp;rsquo;s it!
-The schematic and layout was done in Altium and can be found on my &lt;a href="https://github.com/Noxet/infinity-disco-lights">GitHub&lt;/a>.&lt;/p></content></item><item><title>Wake Up</title><link>https://noxet.se/music/wake-up/</link><pubDate>Tue, 03 Mar 2020 22:13:41 +0100</pubDate><guid>https://noxet.se/music/wake-up/</guid><description>#Glitch Hop</description><content>&lt;p>#Glitch Hop&lt;/p></content></item><item><title>about</title><link>https://noxet.se/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://noxet.se/about/</guid><description>I am an Electrical Engineer by training, and a musician by heart. I am a former Ph.D. student in Security and Cryptography at Lund University, Sweden.
-I have a passion for learning and creating (un)necessary things, which is why I always have one too many projects going on. I love everything related to electronics, from hardcore analog, digital, FPGA, ASIC, embedded, to operating systems, network, and of course security.
-I am a guitarist turned bassist, and I am now a full-time slapper.</description><content>&lt;p>I am an Electrical Engineer by training, and a musician by heart.
-I am a former Ph.D. student in Security and Cryptography at Lund University, Sweden.&lt;/p>
-&lt;p>I have a passion for learning and creating (un)necessary things, which is why I always have
-one too many projects going on. I love everything related to electronics, from hardcore analog,
-digital, FPGA, ASIC, embedded, to operating systems, network, and of course security.&lt;/p>
-&lt;p>I am a guitarist turned bassist, and I am now a full-time slapper.
-I have trained martials arts for many years, which helped me slap even harder.&lt;/p>
-&lt;p>I love the smell of soldering tin in the morning.&lt;/p></content></item></channel></rss>
+&lt;p>From bare-metal development to RTOS and Linux, we deliver high-quality code and documentation.&lt;/p>
+&lt;h1 id="electronics-and-pcb">Electronics and PCB&lt;/h1>
+&lt;p>We provide expertise in electronics and PCB design, from power electronics to high-speed circuits, such as
+FPGAs, DRAM, USB, and Ethernet.&lt;/p>
+&lt;p>We develop electronic products, both custom-made for businesses, but also home electronic devices.&lt;/p>
+&lt;h1 id="cybersecurity">Cybersecurity&lt;/h1>
+&lt;p>We provide expertise in cybersecurity for embedded systems, to help companies stay up-to-date with
+current technologies, and to be standard-compliant, such as RED and CRA.&lt;/p></content></item></channel></rss>
