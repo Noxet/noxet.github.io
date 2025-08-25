@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Noxet Technologies</title><link>https://noxet.se/</link><description>Recent content on Noxet Technologies</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://noxet.se/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://noxet.se/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://noxet.se/about/</guid><description>&lt;p>Noxet Technologies is a small company with big xxx&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/about/</guid><description>&lt;p>Noxet Technologies is a small company with big xxx&lt;/p>
 &lt;h1 id="embedded-systems">Embedded systems&lt;/h1>
 &lt;p>We have experience with many tehcnologies in embedded systems, working mostly with the following MCUs&lt;/p>
 &lt;ul>
@@ -27,4 +27,4 @@ FPGAs, DRAM, USB, and Ethernet.&lt;/p>
 &lt;p>We develop electronic products, both custom-made for businesses, but also home electronic devices.&lt;/p>
 &lt;h1 id="cybersecurity">Cybersecurity&lt;/h1>
 &lt;p>We provide expertise in cybersecurity for embedded systems, to help companies stay up-to-date with
-current technologies, and to be standard-compliant, such as RED and CRA.&lt;/p></content></item></channel></rss>
+current technologies, and to be standard-compliant, such as RED and CRA.&lt;/p></content></item><item><title/><link>/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/contact/</guid><description>&lt;p>Send inquiries to &lt;code>contact AT noxet.se&lt;/code>&lt;/p></description><content>&lt;p>Send inquiries to &lt;code>contact AT noxet.se&lt;/code>&lt;/p></content></item></channel></rss>
