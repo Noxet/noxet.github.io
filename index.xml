@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Noxet Technologies</title><link>/</link><description>Recent content on Noxet Technologies</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/about/</guid><description>&lt;p>Noxet Technologies is a small company with big engagement.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Noxet Technologies</title><link>/</link><description>Recent content on Noxet Technologies</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/about/</guid><description>&lt;p>Noxet Technologies is a small company with big engagement.&lt;/p>
 &lt;h1 id="embedded-systems">Embedded systems&lt;/h1>
 &lt;p>We have experience with many tehcnologies in embedded systems, working mostly with the following MCUs&lt;/p>
 &lt;ul>
@@ -11,20 +11,4 @@
 &lt;h1 id="electronics-and-pcb">Electronics and PCB&lt;/h1>
 &lt;p>We provide expertise in electronics and PCB design, from power electronics to high-speed circuits, such as
 FPGAs, DRAM, USB, and Ethernet.&lt;/p>
-&lt;p>We develop electronic products, both custom-made for businesses, but also home electronic devices.&lt;/p></description><content>&lt;p>Noxet Technologies is a small company with big engagement.&lt;/p>
-&lt;h1 id="embedded-systems">Embedded systems&lt;/h1>
-&lt;p>We have experience with many tehcnologies in embedded systems, working mostly with the following MCUs&lt;/p>
-&lt;ul>
-&lt;li>AVR&lt;/li>
-&lt;li>STM32&lt;/li>
-&lt;li>ESP&lt;/li>
-&lt;li>RISC-V&lt;/li>
-&lt;/ul>
-&lt;p>From bare-metal development to RTOS and Linux, we deliver high-quality code and documentation.&lt;/p>
-&lt;h1 id="electronics-and-pcb">Electronics and PCB&lt;/h1>
-&lt;p>We provide expertise in electronics and PCB design, from power electronics to high-speed circuits, such as
-FPGAs, DRAM, USB, and Ethernet.&lt;/p>
-&lt;p>We develop electronic products, both custom-made for businesses, but also home electronic devices.&lt;/p>
-&lt;h1 id="cybersecurity">Cybersecurity&lt;/h1>
-&lt;p>We provide expertise in cybersecurity for embedded systems, to help companies stay up-to-date with
-current technologies, and to be standard-compliant, such as RED and CRA.&lt;/p></content></item><item><title/><link>/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/contact/</guid><description>&lt;p>Send inquiries to &lt;code>contact AT noxet.se&lt;/code>&lt;/p></description><content>&lt;p>Send inquiries to &lt;code>contact AT noxet.se&lt;/code>&lt;/p></content></item></channel></rss>
+&lt;p>We develop electronic products, both custom-made for businesses, but also home electronic devices.&lt;/p></description></item><item><title/><link>/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/contact/</guid><description>&lt;p>Send inquiries to &lt;code>contact AT noxet.se&lt;/code>&lt;/p></description></item></channel></rss>
